@@ -181,7 +181,7 @@
         const brand = document.querySelector('.brand');
         if(!brand) return;
         const img = document.createElement('img');
-        img.src = 'rgw_fair.png';
+        img.src = '/main/rgw_fair.png';
         img.alt = 'RGW Fair';
         img.className = 'rgw-logo';
         const logo = brand.querySelector('.logo');
@@ -555,7 +555,7 @@
             if(cart.length===0){ alert('Ihr Warenkorb ist leer.'); return; }
             // Demo: open mail client with summary
             const subject = encodeURIComponent('Bestellung FairShop am RGW');
-            const body = encodeURIComponent(cart.map(it=>it.name+' — '+formatPrice(it.price)).join('n') + 'Gesamt: ' + formatPrice(cart.reduce((s,i)=>s+i.price,0)));
+            const body = encodeURIComponent(cart.map(it=>it.name+' — '+formatPrice(it.price)).join('\\n') + '\\n\\nGesamt: ' + formatPrice(cart.reduce((s,i)=>s+i.price,0)));
             window.location.href = 'mailto:kerstin.lackner@ruhr-gymnasium.de?subject='+subject+'&body='+body;
         }
 
@@ -605,12 +605,6 @@
 </body>
 
 </html>
-
-
-
-
-
-
 
 
 
