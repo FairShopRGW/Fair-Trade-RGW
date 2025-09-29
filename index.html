@@ -176,38 +176,7 @@
     }
     </style>
 
-    <script>
-    (function(){
-        const brand = document.querySelector('.brand');
-        if(!brand) return;
-        const img = document.createElement('img');
-        img.src = 'rgw_fair.png';
-        img.alt = 'RGW Fair';
-        img.className = 'rgw-logo';
-        const logo = brand.querySelector('.logo');
-        brand.insertBefore(img, logo || brand.firstChild);
-    // remove rounded corners on the inserted image and size it for the nav
-    img.style.borderRadius = '0';
-    img.style.width = 'auto';
-    img.style.height = '44px';
-    img.style.objectFit = 'cover';
-    img.style.margin = '0 8px 0 0';
-    img.style.verticalAlign = 'middle';
-    img.style.display = 'inline-block';
-
-    // try to insert the image next to the "Home" link (before the first nav link)
-    const firstNavLink = document.querySelector('nav ul li:first-child a');
-    if (firstNavLink && firstNavLink.parentElement) {
-        firstNavLink.parentElement.insertBefore(img, firstNavLink);
-    } else {
-        // fallback: insert between brand and nav
-        const container = brand.parentElement || document.querySelector('.container.nav');
-        const nav = container && container.querySelector('nav');
-        if (container && nav) container.insertBefore(img, nav);
-    }
-
-    })();
-    </script>
+    <img src="rgw_fair.png" alt="Fair Shop X RGW Logo">
     <main class="container">
         <section id="home" class="hero" aria-label="Startseite">
             <div class="hero-grid">
@@ -605,6 +574,7 @@
 </body>
 
 </html>
+
 
 
 
