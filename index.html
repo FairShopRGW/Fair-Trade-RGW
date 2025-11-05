@@ -7,6 +7,182 @@
     <meta name="description" content="FairShop am RGW – Fair gehandelte Produkte, Nachhaltigkeit und Informationen" />
 
     <style>
+               :root{
+            --fair-blue: #00B0DB;
+            --fair-green: #CDD42A;
+            --bg: #f7fbfb;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --accent-text: #05263a;
+        }
+
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, rgba(0,163,89,0.03), rgba(0,115,200,0.02)), var(--bg);
+            color:var(--accent-text);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.45;
+        }
+
+        /* Header / Nav */
+        header{
+            position:sticky;
+            top:0;
+            z-index:50;
+            backdrop-filter: blur(6px);
+            background: linear-gradient(90deg, rgba(255,255,255,0.75), rgba(255,255,255,0.6));
+            border-bottom:1px solid rgba(2,6,23,0.05);
+        }
+        .container{max-width:1100px;margin:0 auto;padding:0 20px;}
+        .nav{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            padding:12px 0;
+        }
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            text-decoration:none;
+            color:var(--accent-text);
+        }
+        .logo{
+            width:44px;height:44px;border-radius:8px;
+            background: linear-gradient(135deg,var(--fair-green),var(--fair-blue));
+            display:flex;align-items:center;justify-content:center;
+            color:white;font-weight:700;font-size:18px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+        }
+        nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px;align-items:center;}
+        nav a{
+            display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--accent-text);
+            font-weight:600;font-size:15px;
+        }
+        nav a:hover, nav a.active{
+            background:linear-gradient(90deg, rgba(0,163,89,0.12), rgba(0,115,200,0.08));
+            color:var(--fair-blue);
+        }
+
+        /* Mobile */
+        .menu-toggle{display:none;background:transparent;border:0;padding:8px;border-radius:8px}
+        .menu-toggle svg{width:22px;height:22px}
+        @media (max-width:800px){
+            nav ul{position:absolute;right:20px;top:64px;flex-direction:column;gap:6px;background:rgba(255,255,255,0.98);padding:12px;border-radius:10px;box-shadow:0 8px 24px rgba(2,6,23,0.08);display:none;}
+            nav ul.open{display:flex}
+            .menu-toggle{display:inline-block}
+        }
+
+        /* Hero */
+        .hero{padding:36px 0 24px}
+        .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+        .hero h1{margin:0;font-size:32px;color:var(--fair-blue)}
+        .tagline{margin-top:8px;color:var(--muted)}
+        .cta-row{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+        .btn{
+            padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer;
+            background:var(--fair-blue);color:white;
+            box-shadow:0 6px 18px rgba(0,115,200,0.12);
+        }
+        .btn.secondary{
+            background:transparent;color:var(--fair-blue);border:1px solid rgba(0,115,200,0.12);
+            box-shadow:none;
+        }
+
+        .info-card{
+            background:linear-gradient(180deg, rgba(0,163,89,0.06), rgba(0,115,200,0.03));
+            padding:14px;border-radius:12px;
+            box-shadow:0 6px 20px rgba(2,6,23,0.03);
+            color:var(--accent-text);
+        }
+
+        /* Sections */
+        section{padding:28px 0}
+        h2{margin:0 0 10px;font-size:22px;color:var(--fair-green)}
+        p.lead{color:var(--muted);margin-top:6px}
+
+        /* Products */
+        .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:14px}
+        .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04);display:flex;flex-direction:column;gap:10px}
+        .product-media{height:120px;border-radius:8px;background:linear-gradient(135deg,var(--fair-blue),var(--fair-green));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:17px}
+
+        .price{font-weight:700;color:var(--fair-green)}
+        .small{font-size:13px;color:var(--muted)}
+
+        /* Contact */
+        .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+        .form-row{display:flex;gap:8px}
+        .form-row .field{flex:1}
+        label{display:block;font-size:13px;margin-bottom:6px}
+        input[type="text"], input[type="email"], textarea{
+            width:100%;padding:10px;border-radius:8px;border:1px solid rgba(2,6,23,0.07);font-size:14px;
+        }
+        textarea{min-height:120px;resize:vertical}
+        .muted-block{background:linear-gradient(135deg,rgba(0,115,200,0.04),rgba(0,163,89,0.03));padding:12px;border-radius:10px;color:var(--muted)}
+
+        footer{padding:20px 0;color:var(--muted);font-size:14px;border-top:1px solid rgba(2,6,23,0.04)}
+        a.link{color:var(--fair-blue);text-decoration:none}
+        /* responsive adjustments */
+        @media (max-width:1000px){
+            .hero-grid{grid-template-columns:1fr}
+        }
+        @media (max-width:780px){
+            .contact-grid{grid-template-columns:1fr}
+        }
+
+        .rgw-fair-logo {
+            height: 44px;
+        }
+
+        /* Team Bereich */
+        .team-section{
+            background: linear-gradient(180deg, rgba(0,115,200,0.03), rgba(0,163,89,0.03));
+            padding:38px 0 36px;
+        }
+        .team-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+            gap:28px;
+            justify-items:center;
+            margin-top:24px;
+        }
+        .team-card{
+            background:#fff;
+            border-radius:14px;
+            box-shadow:0 6px 18px rgba(2,6,23,0.06);
+            padding:18px 18px 6px 18px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:10px;
+            min-width:140px;
+            width:100%;
+        }
+        .team-photo{
+            width:94px;
+            height:94px;
+            border-radius:50%;
+            object-fit:cover;
+            margin-bottom:8px;
+            box-shadow:0 2px 7px rgba(0,163,89,0.10);
+            background:#f0f4f5;
+        }
+        .team-name{
+            font-weight:700;
+            color:var(--fair-blue);
+            font-size:17px;
+            margin-bottom:3px;
+        }
+        .team-role{
+            color:var(--muted);
+            font-size:14px;
+            text-align:center;
+        }
         :root{
             --fair-blue: #00B0DB;
             --fair-green: #CDD42A;
@@ -481,7 +657,44 @@
                 <div style="font-size:13px;color:var(--muted)">Deveopment: Mio🦦🛹</div>
             </div>
         </footer>
+            <section id="team" class="team-section" aria-label="FairShop-Team">
+            <h2>Unser Team</h2>
+            <p class="lead">Hier stellen wir unser engagiertes Team vor, das den FairShop am RGW möglich macht.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="team1.jpg" alt="Kerstin Lackner" class="team-photo">
+                    <div class="team-name">Kerstin Lackner</div>
+                    <div class="team-role">Leitung & Organisation</div>
+                </div>
+                <div class="team-card">
+                    <img src="team2.jpg" alt="Mio" class="team-photo">
+                    <div class="team-name">Mio</div>
+                    <div class="team-role">Entwicklung & Web</div>
+                </div>
+                <div class="team-card">
+                    <img src="team3.jpg" alt="Alex" class="team-photo">
+                    <div class="team-name">Alex</div>
+                    <div class="team-role">Verkauf & Beratung</div>
+                </div>
+                <div class="team-card">
+                    <img src="team4.jpg" alt="Lili" class="team-photo">
+                    <div class="team-name">Lili</div>
+                    <div class="team-role">Bestellung & Lager</div>
+                </div>
+                <!-- Weitere Teammitglieder nach Bedarf -->
+            </div>
+        </section>
+
+        <footer style="margin-top:18px">
+            <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                <div>© FairShop am RGW — Alle Angaben ohne Gewähr</div>
+                <div style="font-size:13px;color:var(--muted)">Made with ❤️ für nachhaltigen Handel</div>
+                <div style="font-size:13px;color:var(--muted)">Deveopment: Mio🦦🛹</div>
+            </div>
+        </footer>
     </main>
+    
+    
 
     <script>
         // Navigation toggle (mobile)
@@ -592,6 +805,7 @@
 </body>
 
 </html>
+
 
 
 
